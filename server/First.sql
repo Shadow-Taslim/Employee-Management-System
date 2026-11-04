@@ -27,8 +27,8 @@ CREATE TABLE `admin_login` (
   `admin_username` varchar(255) NOT NULL,
   `admin_password` varchar(255) NOT NULL,
   PRIMARY KEY (`admin_username`),
-  KEY `admin_id` (`admin_id`),
-  CONSTRAINT `admin_login_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `official` (`id`)
+  UNIQUE KEY `admin_id` (`admin_id`),
+  CONSTRAINT `admin_login_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `official` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -52,8 +52,8 @@ CREATE TABLE `attendance` (
   `emp_id` int NOT NULL,
   `entry_time` time DEFAULT NULL,
   `exit_time` time DEFAULT NULL,
-  KEY `emp_id` (`emp_id`),
-  CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `official` (`id`)
+  UNIQUE KEY `emp_id` (`emp_id`),
+  CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `official` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -79,8 +79,8 @@ CREATE TABLE `emp_login` (
   `emp_username` varchar(255) NOT NULL,
   `emp_password` varchar(255) NOT NULL,
   PRIMARY KEY (`emp_username`),
-  KEY `emp_id` (`emp_id`),
-  CONSTRAINT `emp_login_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `official` (`id`)
+  UNIQUE KEY `emp_id` (`emp_id`),
+  CONSTRAINT `emp_login_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `official` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -90,7 +90,7 @@ CREATE TABLE `emp_login` (
 
 LOCK TABLES `emp_login` WRITE;
 /*!40000 ALTER TABLE `emp_login` DISABLE KEYS */;
-INSERT INTO `emp_login` VALUES (101,'ASD','ds_password'),(105,'tanuj','tm_password'),(104,'tanya','tc_password');
+INSERT INTO `emp_login` VALUES (101,'ASD','scrypt:32768:8:1$eae90a1341ff13e559eb473b5dc246e3$308fc93830aa9c30c36999d0581996294d4c3535014ecdbc898ce54e6ad132451368371bd0607c0db642dab6b39ab5e94a152901185c311a953c7df8371e436f'),(105,'tanuj','scrypt:32768:8:1$c393cc392378ce6b5789096e62ef6903$b276d244deeb301d26f9de4b23d9d80c56d307fc66c3011786773b6f4bde1abbe0ba9166f823c0c8bb43b558550a888d2820929fb99f41f594635477587d60d9'),(104,'tanya','scrypt:32768:8:1$4d3b3c6559a24667be477d19701951cd$7fd6d9def7ebc7ff1d483ca781c3c2b888e4fbd41ade03d66f48498afc7a167807c7816711f6d7ab7cdb08751aef06c9bbbd64d55d5427256ad217fc34bd5c59');
 /*!40000 ALTER TABLE `emp_login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -106,8 +106,8 @@ CREATE TABLE `leaves` (
   `leaves_allowed` int NOT NULL,
   `leaves_taken` int NOT NULL,
   `leaves_left` int NOT NULL,
-  KEY `emp_id` (`emp_id`),
-  CONSTRAINT `leaves_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `official` (`id`)
+  UNIQUE KEY `emp_id` (`emp_id`),
+  CONSTRAINT `leaves_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `official` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -163,8 +163,8 @@ CREATE TABLE `salary` (
   `monthly_salary` decimal(9,2) NOT NULL,
   `bonus` decimal(9,2) NOT NULL DEFAULT '0.00',
   `deduction` decimal(9,2) NOT NULL DEFAULT '0.00',
-  KEY `emp_id` (`emp_id`),
-  CONSTRAINT `salary_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `official` (`id`)
+  UNIQUE KEY `emp_id` (`emp_id`),
+  CONSTRAINT `salary_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `official` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
